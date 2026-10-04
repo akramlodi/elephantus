@@ -1,4 +1,4 @@
-# 🐘 Elephantus
+# Elephantus
 
 ![Elephantus banner](./Elephantus%20banner.png)
 
@@ -10,8 +10,9 @@ about the user. It links each new fact to the ones it already has and keeps trac
 
 *An elephant never forgets, but it does know which of its memories are out of date.*
 
-<!-- 📸 Demo GIF / screenshots go here, e.g. docs/demo.gif -->
-> _Placeholder: demo GIF / screenshots of the side-by-side chat, memory graph and evaluation view._
+<video src="https://github.com/user-attachments/assets/8d86963d-b060-4939-b358-aad85b4f94de" controls width="100%">
+  Your browser does not support the video tag.
+</video>
 
 ---
 

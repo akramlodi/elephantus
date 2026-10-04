@@ -33,6 +33,15 @@ app = FastAPI(
 app.mount("/static", StaticFiles(directory=WEB_DIR), name="static")
 
 
+@app.middleware("http")
+async def revalidate_ui(request: Request, call_next):
+    """Make the browser revalidate the UI files so index.html and app.js never come from different versions."""
+    response = await call_next(request)
+    if request.url.path == "/" or request.url.path.startswith("/static/"):
+        response.headers["Cache-Control"] = "no-cache"
+    return response
+
+
 @app.get("/", include_in_schema=False)
 def web_ui() -> FileResponse:
     """The terminal-style demo UI (a static page that calls this API)."""
