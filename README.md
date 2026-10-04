@@ -1,5 +1,7 @@
 # 🐘 Elephantus
 
+![Elephantus banner](./Elephantus%20banner.png)
+
 **A small, local memory layer for AI apps.** You send it messages and it pulls out short facts
 about the user. It links each new fact to the ones it already has and keeps track of what is
 *currently true*. You can use it from a REST API, from Claude Desktop (MCP), or from a demo UI.
