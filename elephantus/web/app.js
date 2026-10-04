@@ -85,7 +85,9 @@ function setTab(name) {
   state.tab = name;
   $$(".tabs button").forEach((b) => b.classList.toggle("active", b.dataset.tab === name));
   $$(".pane").forEach((p) => p.classList.toggle("active", p.id === `pane-${name}`));
-  location.hash = name;
+  // replaceState instead of location.hash: assigning the hash makes the browser jump to any
+  // element whose id matches the tab name (that is what scrolled the graph tab down).
+  history.replaceState(null, "", `#${name}`);
   renderTab();
 }
 function renderTab() {
@@ -236,7 +238,7 @@ async function renderMemories() {
 // -------------------------------------------------------------------- graph
 async function renderGraph() {
   const g = await api("GET", `/v1/containers/${enc(state.tag)}/graph?time_offset_hours=${state.offset}`);
-  const box = $("#graph");
+  const box = $("#graph-view");
   if (!g.nodes.length) { box.replaceChildren(h("div", { class: "empty" }, "no memories yet")); return; }
 
   // Column = length of the longest chain of edges a node starts (old facts left, newer right).
@@ -439,6 +441,11 @@ async function init() {
     if (["INPUT", "SELECT", "TEXTAREA"].includes(document.activeElement.tagName)) return;
     if (e.key >= "1" && e.key <= String(TABS.length)) setTab(TABS[Number(e.key) - 1]);
     if (e.key === "/") { e.preventDefault(); setTab("chat"); $("#chat-input").focus(); }
+  });
+
+  window.addEventListener("hashchange", () => {
+    const name = location.hash.slice(1);
+    if (TABS.includes(name) && name !== state.tab) setTab(name);
   });
 
   updateClock();

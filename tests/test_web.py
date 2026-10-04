@@ -80,8 +80,9 @@ def test_browser_sneaker_flow(engine, sneaker_llm, monkeypatch):  # noqa: F811
             page.wait_for_selector("#memory-list .row.outdated")
             assert ADIDAS in page.locator("#memory-list .row.outdated").inner_text()
             page.click("[data-tab=graph]")
-            page.wait_for_selector("#graph svg")
-            assert "UPDATES" in page.locator("#graph svg").inner_html()
+            page.wait_for_selector("#graph-view svg")
+            assert "UPDATES" in page.locator("#graph-view svg").inner_html()
+            assert page.evaluate("window.scrollY") == 0  # switching tabs must not scroll the page
             page.click("[data-tab=profile]")
             page.wait_for_function("document.querySelector('#profile-prompt').textContent.length > 0")
             assert PUMA in page.locator("#profile-dynamic").inner_text()
@@ -92,6 +93,12 @@ def test_browser_sneaker_flow(engine, sneaker_llm, monkeypatch):  # noqa: F811
             for tab in ("eval", "log"):
                 page.click(f"[data-tab={tab}]")
             page.wait_for_selector("#log-list .row")
+            page.goto("http://127.0.0.1:8765/#graph")  # same page, new hash -> switches tab
+            page.wait_for_selector("#graph-view svg")
+            assert page.evaluate("window.scrollY") == 0
+            page.reload()  # opening the page on #graph must not scroll either
+            page.wait_for_selector("#graph-view svg")
+            assert page.evaluate("window.scrollY") == 0
             browser.close()
     finally:
         server.should_exit = True

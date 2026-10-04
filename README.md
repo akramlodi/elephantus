@@ -114,7 +114,7 @@ database file is created automatically. Nothing else to install.
 ### Install (one command)
 
 ```bash
-git clone https://github.com/akramlodi/Memory-For-Ai.git && cd Memory-For-Ai
+git clone https://github.com/akramlodi/elephantus.git && cd elephantus
 python -m venv .venv && source .venv/bin/activate      # Windows: .venv\Scripts\activate
 pip install -e ".[dev]"
 ```
@@ -302,10 +302,10 @@ paths** to your clone:
 {
   "mcpServers": {
     "elephantus": {
-      "command": "/ABSOLUTE/PATH/TO/Memory-For-Ai/.venv/bin/python",
+      "command": "/ABSOLUTE/PATH/TO/elephantus/.venv/bin/python",
       "args": ["-m", "elephantus.mcp_server"],
       "env": {
-        "ELEPHANTUS_ENV_FILE": "/ABSOLUTE/PATH/TO/Memory-For-Ai/.env",
+        "ELEPHANTUS_ENV_FILE": "/ABSOLUTE/PATH/TO/elephantus/.env",
         "DEFAULT_CONTAINER_TAG": "khan"
       }
     }
@@ -313,7 +313,7 @@ paths** to your clone:
 }
 ```
 
-On Windows, use `C:\\path\\to\\Memory-For-Ai\\.venv\\Scripts\\python.exe` as the command.
+On Windows, use `C:\\path\\to\\elephantus\\.venv\\Scripts\\python.exe` as the command.
 Restart Claude Desktop, and the three tools appear under the 🔧 icon.
 
 - `DEFAULT_CONTAINER_TAG` should match the tag you use in the UI, so both see the same memories.
