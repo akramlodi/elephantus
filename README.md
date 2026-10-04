@@ -486,3 +486,7 @@ The suite covers the following: storage and container isolation, chunking, extra
 hybrid search, expiry with simulated time, profile, forget, the REST API, the MCP tools
 (in-process client), the web UI (static assets, plus a real-browser run of the sneaker flow
 that is skipped when Playwright isn't installed) and evaluation scoring.
+
+## License
+
+Elephantus is licensed under the [MIT License](./LICENSE).
