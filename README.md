@@ -370,6 +370,9 @@ displays them.
 | expiry | 7 | 100% | 100% | 100% | 100% | 0% | 43% |
 | **overall** | 25 | 98% | **99%** | 84% | 100% | **17%** | 67% |
 
+*Overall stale rates are over the 18 `knowledge_update` and `expiry` scenarios; `extension`
+scenarios have no stale facts.*
+
 **What the numbers show:**
 
 - **Memory matches RAG on recall and cuts stale facts from 100% to 17%.** RAG finds the right
